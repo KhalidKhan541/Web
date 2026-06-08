@@ -3,13 +3,12 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-# Paste this block right after initializing your 'app'
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://agentapifrontend.pages.dev"],  # Allows your Cloudflare frontend
+    allow_origins=["https://agentapifrontend.pages.dev"],
     allow_credentials=True,
-    allow_methods=["*"],  # Allows GET, POST, OPTIONS, etc.
-    allow_headers=["*"],  # Allows all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 @app.get("/api/apis")
