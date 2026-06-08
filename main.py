@@ -1,15 +1,17 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-@app.get("/")
-def root():
-    return {"status": "working"}
-
+# Paste this block right after initializing your 'app'
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=False,
-    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
-    allow_headers=["*"],
+    allow_origins=["https://agentapifrontend.pages.dev"],  # Allows your Cloudflare frontend
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows GET, POST, OPTIONS, etc.
+    allow_headers=["*"],  # Allows all headers
 )
+
+@app.get("/api/apis")
+def get_apis():
+    return {"message": "Success!"}
